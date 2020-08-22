@@ -4,4 +4,6 @@ Requirements:
 - Replace icon declarations, since icons are not contained in the repository
 - Check scripts for system paths, they are based on an Ubuntu 14.04 system
 
- <img src="desktop.jpg" alt="Desktop">  
+<figure>
+  <img src="desktop.jpg" alt="Desktop" style="width:100%">
+</figure>
