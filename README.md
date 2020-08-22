@@ -1,4 +1,8 @@
 # awesome-customizations
+Customization for the awesome window manager. See:
+- https://awesomewm.org/
+- https://github.com/awesomeWM/awesome
+
 Requirements:
 - Dust Theme: https://github.com/serialoverflow/awesome-themes
 - Replace icon declarations, since icons are not contained in the repository
