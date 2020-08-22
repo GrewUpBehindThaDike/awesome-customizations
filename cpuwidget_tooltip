@@ -1,0 +1,27 @@
+#!/bin/bash
+
+temp_color=#ff6600
+
+#
+# check which hwmon is pointing to coretemp
+#
+if [ -e /sys/class/hwmon/hwmon0/temp2_label ]; then coretemp=hwmon0
+elif [ -e /sys/class/hwmon/hwmon1/temp2_label ]; then coretemp=hwmon1
+elif [ -e /sys/class/hwmon/hwmon2/temp2_label ]; then coretemp=hwmon2
+elif [ -e /sys/class/hwmon/hwmon3/temp2_label ]; then coretemp=hwmon3
+elif [ -e /sys/class/hwmon/hwmon4/temp2_label ]; then coretemp=hwmon4
+elif [ -e /sys/class/hwmon/hwmon5/temp2_label ]; then coretemp=hwmon5
+fi
+
+#
+# get coretemp
+#
+cpu0=" `cat /sys/class/hwmon/$coretemp/temp2_label`: <span color='$temp_color'>`cat /sys/class/hwmon/$coretemp/temp2_input | cut -c 1-2`</span> °C"
+cpu1=" `cat /sys/class/hwmon/$coretemp/temp3_label`: <span color='$temp_color'>`cat /sys/class/hwmon/$coretemp/temp3_input | cut -c 1-2`</span> °C"
+cpu2=" `cat /sys/class/hwmon/$coretemp/temp4_label`: <span color='$temp_color'>`cat /sys/class/hwmon/$coretemp/temp4_input | cut -c 1-2`</span> °C"
+cpu3=" `cat /sys/class/hwmon/$coretemp/temp5_label`: <span color='$temp_color'>`cat /sys/class/hwmon/$coretemp/temp5_input | cut -c 1-2`</span> °C"
+
+#echo -e "<b>`cat /proc/cpuinfo | grep -v flags`</b>  \n"
+#echo -e "\n<b>$cpu0\n$cpu1\n$cpu2\n$cpu3</b> \n"
+echo -e "\n<b>$cpu0\n$cpu1\n</b> \n"
+echo -e "\n<b>`top -n 1 -b -o %CPU | head -n 17 | tail -n 8`</b>"

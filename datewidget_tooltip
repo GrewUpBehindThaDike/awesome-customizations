@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -e "<b>`cal -3h`</b>"

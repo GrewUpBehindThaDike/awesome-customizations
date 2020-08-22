@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# hostname and 'ip a'
+echo -e "\n<b>Hostname:</b> "
+echo -e "   <b>`cat /etc/hostname`</b> "
+
+adp=`ip -o -0 link | cut -sd ' ' -f 2 | cut -sd ':' -f1`
+
+for a in $adp; do
+  ip=`ip addr show $a | grep 'inet ' | cut -sd ' ' -f 6 | cut -sd "/" -f 1`
+  if [ ! -z "$ip" ]; then
+    ip_list="$ip_list<span color='#00ff00'>   $ip</span> ($a)\n"
+  fi
+done
+
+# print ips
+echo -e "\n<b>IPs:</b> "
+if [ ! -z "$ip_list" ]; then
+	echo -e "<b>$ip_list</b> "
+fi

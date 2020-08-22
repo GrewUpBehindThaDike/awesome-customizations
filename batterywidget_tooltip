@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# calculate battery percentage 
+current_charge=`cat /sys/class/power_supply/BAT0/charge_now`
+max_charge=`cat /sys/class/power_supply/BAT0/charge_full`
+charge_perc=`echo "$current_charge*100/$max_charge" | bc`
+
+if [ ${charge_perc} -gt 100 ]; then
+  echo -e "\n  <b>100%  `cat /sys/class/power_supply/BAT0/status`</b>  "
+else
+  echo -e "\n  <b>$charge_perc%  `cat /sys/class/power_supply/BAT0/status`</b>  "
+fi

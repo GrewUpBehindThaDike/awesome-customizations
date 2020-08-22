@@ -1,0 +1,133 @@
+#!/bin/bash
+
+#
+# Hostname
+#
+#
+echo -e "\n`tput bold; tput smul`Hostname:`tput sgr0` "
+echo -e "   `cat /etc/hostname` "
+
+#
+# Get ip from each adapter
+#
+#
+ppp0_ip=`ip addr show ppp0 | grep 'peer ' | cut -sd ' ' -f 6`
+enp3s0_ip=`ip addr show enp3s0 | grep 'inet ' | cut -sd ' ' -f 6`
+wlan0_ip=`ip addr show wlan0 | grep 'inet ' | cut -sd ' ' -f 6`
+
+#
+# Add them to a list
+#
+#
+if [ ! -z $ppp0_ip ]; then
+	ip_list="$ip_list`tput setaf 2`$ppp0_ip`tput sgr0` (ppp0) "
+fi
+
+if [ ! -z $enp3s0_ip ]; then
+	ip_list="$ip_list`tput setaf 2`$enp3s0_ip`tput sgr0` (enp3s0) "
+fi
+
+if [ ! -z $wlan0_ip ]; then
+	ip_list="$ip_list`tput setaf 2`$wlan0_ip`tput sgr0` (wlan0) "
+fi
+
+#
+# Print ips
+#
+#
+echo -e "\n`tput bold; tput smul`IPs:`tput sgr0` "
+if [ ! -z "$ip_list" ]; then
+	echo -e "   $ip_list "
+	echo -e "   `tput setaf 2``dig +short myip.opendns.com @resolver1.opendns.com``tput sgr0` (extern) "
+else
+	echo -e "   Network down "
+fi
+
+#
+# Print df output
+#
+#
+echo -e "\n`df -h` \n "
+
+#
+# Weather
+#
+#
+echo -e "`tput bold; tput smul`Weather:`tput sgr0`"
+
+#
+# Germany
+#
+#
+echo -e "   `tput setab 0`Germany`tput sgr0`"
+#
+# Bremen
+#
+#
+url="http://www.accuweather.com/en/de/bremen/28195/weather-forecast/167950"
+weather=`wget -q -O- "$url" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print "Bremen 		"$10"°C, Realfeel "$12"°C, "$14}' | head -1`
+echo -e "   $weather"
+#
+# Cuxhaven
+#
+#
+url="http://www.accuweather.com/en/de/cuxhaven/27474/weather-forecast/169959"
+weather=`wget -q -O- "$url" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print "Cuxhaven 		"$10"°C, Realfeel "$12"°C, "$14}' | head -1`
+echo -e "   $weather"
+
+#
+# Austria
+#
+#
+echo -e "\n   `tput setab 0`Austria`tput sgr0`"
+#
+# Zell am Ziller
+#
+#
+url="http://www.accuweather.com/en/at/zell-am-ziller/31147/weather-forecast/31147"
+weather=`wget -q -O- "$url" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print "Zell am Ziller 	"$10"°C, Realfeel "$12"°C, "$14}' | head -1`
+echo -e "   $weather"
+
+#
+# Croatia
+#
+#
+echo -e "\n   `tput setab 0`Croatia`tput sgr0`"
+#
+# Makarska
+#
+#
+url="http://www.accuweather.com/en/hr/makarska/115628/weather-forecast/115628"
+weather=`wget -q -O- "$url" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print "Makarska 		"$10"°C, Realfeel "$12"°C, "$14}' | head -1`
+echo -e "   $weather"
+
+#
+# Spain
+#
+#
+echo -e "\n   `tput setab 0`Spain`tput sgr0`"
+#
+# Barcelona
+#
+#
+url="http://www.accuweather.com/en/es/barcelona/307297/weather-forecast/307297"
+weather=`wget -q -O- "$url" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print "Barcelona 		"$10"°C, Realfeel "$12"°C, "$14}' | head -1`
+echo -e "   $weather"
+
+#
+# Date
+#
+#
+date1=`date +"%a. %e.%m.%G"`
+date2=`date +"%H:%M:%S"`
+date3=`date +"%Z"`
+echo -e "`tput bold; tput smul`\nDate:`tput sgr0`"
+echo -e "   $date1 | `tput bold`$date2`tput sgr0` $date3"
+
+#
+# Cal
+#
+#
+echo -e "\n`cal -w`"
+
+echo -e ""

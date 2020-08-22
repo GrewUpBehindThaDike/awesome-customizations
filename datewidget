@@ -1,0 +1,7 @@
+#!/bin/bash
+date1=`date +"%a. %e. %B %G"`
+date2=`date +"%H:%M:%S"`
+date3=`date +"%Z"`
+#echo "<span color='#cccccc'>$date1 | <b><span color='#ff7256'>$date2</span></b> $date3 </span>"
+#echo "<span color='#cccccc'>$date1 | <b><span color='#66CDAA'>$date2</span></b> $date3 </span>"
+echo "<span color='#cccccc'>$date1 | <b><span color='#00cccc'>$date2</span></b> $date3 </span>"

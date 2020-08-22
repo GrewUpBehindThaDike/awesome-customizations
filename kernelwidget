@@ -1,0 +1,4 @@
+#!/bin/bash
+#echo "<span color='#ff7256'><b>⮊`uname -r | sed "s/-ARCH//g"`</b></span>"
+#echo "<span color='#66CDAA'><b>⮊`uname -r | sed "s/-ARCH//g"`</b></span>"
+echo "<span color='#00cccc'><b>⮊`uname -r | sed "s/-ARCH//g"`</b></span>"
