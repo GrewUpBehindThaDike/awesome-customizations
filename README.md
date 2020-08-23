@@ -9,5 +9,5 @@ Requirements:
 - Check scripts for system paths, they are based on an Ubuntu 14.04 system
 
 <figure>
-  <img src="desktop.jpg" alt="Desktop" style="width:100%">
+  <img src="desktop2jpg" alt="Desktop" style="width:100%">
 </figure>
